@@ -1,0 +1,52 @@
+.psds-tabungan-emas .bg-syariah {
+    background-image: url('../assets/images/BG-Nav-II.svg');
+    background-size: cover;
+    background-position: center;
+}
+
+.psds-tabungan-emas img.icon{
+    height: 24px;
+}
+
+.psds-tabungan-emas p{
+    margin-bottom: 0px;
+}
+
+.psds-tabungan-emas .psds-nav-content p{
+    font-family: NunitoSans-SemiBold;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.psds-tabungan-emas .psds-nav-content h5 {
+    color: #BFD730;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.psds-tabungan-emas .psds-nav-content h5.price {
+    font-family: NunitoSans-ExtraBold;
+    font-weight:800;
+    font-size: 20px !important;
+    line-height: 30px !important;
+}
+
+.psds-tabungan-emas .psds-nav-content .row_hide h5.price{
+    font-size: 28px !important;
+}
+
+.psds-tabungan-emas .psds-nav-content a {
+    float: right;
+}
+
+hr.psds-line {
+    margin: 8px 0px;
+    border: 1px solid #407972;
+}
+
+.psds-tabungan-emas .psds-nav-content .text-rekening {
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 20px;
+}
