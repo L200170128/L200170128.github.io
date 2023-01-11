@@ -21,6 +21,7 @@
         .choice-chip p {
             font-size: 12px;
             line-height: 18px;
+            margin-bottom: 0;
         }
 
         .choice-chip-head {
@@ -53,19 +54,60 @@
         .choice-chip input[type="radio"]:not(:disabled)~label {
             cursor: pointer;
         }
-        
+
         .choice-chip input[type="radio"]:checked+label {
             background: #F1F8EC;
             color: #004D43;
             border-color: #407972;
         }
+
+        /* ==================================================== */
+
+        .choice-slide::-webkit-scrollbar{
+            display: none;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .choice-slide{
+            overflow: auto;
+            white-space: nowrap;
+        }
+        .choice-slide p {
+            margin-bottom: 0;
+        }
+        .choice-slide p.head {
+            font-size: 14px;
+            line-height: 20px;
+            font-family: NunitoSans-SemiBold;
+        }
+        .choice-slide p.body{
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 14px;
+            text-transform: capitalize !important;
+        }
+        .choice-slide .choice-chip-label {
+            border: 1px solid #EEEEEF;
+            border-radius: 4px;
+            padding: 6px;
+            margin-right: 4px;
+
+            height: unset;
+            min-width: 104px;
+            width: fit-content;
+            text-align: left;
+
+            color: #58585B;
+
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
-    <section class="psds-tabungan-emas">
+    <section>
         <div class="container-fluid p-2">
-            
+
             <div class="choice-chip">
 
                 <div class="choice-chip-head">
@@ -104,7 +146,66 @@
                 </label>
 
             </div>
-            
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid p-2">
+
+            <div class="choice-chip">
+
+                <div class="choice-chip-head">
+                    <h7>Jumlah Pembelian</h7>
+                    <p>Harga beli emas saat ini Rp 9.200 / 0,01 gr</p>
+                </div>
+
+                <div class="choice-slide">
+
+                    <input type="radio" name="budget" id="col-choice-1">
+                    <label class="choice-chip-label" for="col-choice-1">
+                        <span>
+                            <p class="head">1 Gram</p>
+                            <p class="body"> Rp. 1.000.000 </p>
+                        </span>
+                    </label>
+
+                    <input type="radio" name="budget" id="col-choice-2">
+                    <label class="choice-chip-label" for="col-choice-2">
+                        <span>
+                            <p class="head">1 Gram</p>
+                            <p class="body"> Rp. 1.000.000 </p>
+                        </span>
+                    </label>
+
+                    <input type="radio" name="budget" id="col-choice-3">
+                    <label class="choice-chip-label" for="col-choice-3">
+                        <span>
+                            <p class="head">1 Gram</p>
+                            <p class="body"> Rp. 1.000.000 </p>
+                        </span>
+                    </label>
+
+                    <input type="radio" name="budget" id="col-choice-4">
+                    <label class="choice-chip-label" for="col-choice-4">
+                        <span>
+                            <p class="head">1 Gram</p>
+                            <p class="body"> Rp. 1.000.000 </p>
+                        </span>
+                    </label>
+
+                    <input type="radio" name="budget" id="col-choice-5">
+                    <label class="choice-chip-label" for="col-choice-5">
+                        <span>
+                            <p class="head">1 Gram</p>
+                            <p class="body"> Rp. 1.000.000 </p>
+                        </span>
+                    </label>
+
+                </div>
+
+            </div>
+
         </div>
     </section>
 
