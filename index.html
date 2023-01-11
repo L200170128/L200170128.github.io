@@ -1,2 +1,114 @@
-<h1> code </h1>
-<h1>TUGAS 1 ada di linl l200170128.github.io/DDL_DML</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pegadaian Ui Kit</title>
+    <link rel="stylesheet" href="./css/pegadaian-material.min.css" />
+    <style>
+        .choice-chip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .choice-chip label {
+            margin-bottom: 0;
+        }
+
+        .choice-chip p {
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .choice-chip-head {
+            display: inline-grid;
+            width: 100vw;
+        }
+
+        .choice-chip-label {
+            border: 1px solid #EEEEEF;
+            border-radius: 4px;
+
+            flex: calc(100% * (1/3) - 10px - 1px);
+            height: 28px;
+            text-align: center;
+
+            padding: 4px 0;
+
+            font-family: NunitoSans-SemiBold;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+
+            color: #58585B;
+        }
+
+        .choice-chip input[type="radio"] {
+            display: none;
+        }
+
+        .choice-chip input[type="radio"]:not(:disabled)~label {
+            cursor: pointer;
+        }
+        
+        .choice-chip input[type="radio"]:checked+label {
+            background: #F1F8EC;
+            color: #004D43;
+            border-color: #407972;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="psds-tabungan-emas">
+        <div class="container-fluid p-2">
+            
+            <div class="choice-chip">
+
+                <div class="choice-chip-head">
+                    <h7>Jumlah Pembelian</h7>
+                    <p>Harga beli emas saat ini Rp 9.200 / 0,01 gr</p>
+                </div>
+
+                <input type="radio" name="budget" id="budget-1">
+                <label class="choice-chip-label" for="budget-1">
+                    <span>Rp 100 Ribu</span>
+                </label>
+
+                <input type="radio" name="budget" id="budget-2">
+                <label class="choice-chip-label" for="budget-2">
+                    <span>Rp 500 Ribu</span>
+                </label>
+
+                <input type="radio" name="budget" id="budget-3">
+                <label class="choice-chip-label" for="budget-3">
+                    <span>Rp 1 Juta</span>
+                </label>
+
+                <input type="radio" name="budget" id="budget-4">
+                <label class="choice-chip-label" for="budget-4">
+                    <span>Rp 5 Juta</span>
+                </label>
+
+                <input type="radio" name="budget" id="budget-5">
+                <label class="choice-chip-label" for="budget-5">
+                    <span>Rp 10 Juta</span>
+                </label>
+
+                <input type="radio" name="budget" id="budget-6">
+                <label class="choice-chip-label" for="budget-6">
+                    <span>Rp 50 Juta</span>
+                </label>
+
+            </div>
+            
+        </div>
+    </section>
+
+    <script src="./js/global-concat.min.js"></script>
+</body>
+
+</html>
