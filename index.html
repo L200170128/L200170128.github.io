@@ -1,215 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pegadaian Ui Kit</title>
-    <link rel="stylesheet" href="./css/pegadaian-material.min.css" />
+    <title>Kamera</title>
     <style>
-        .choice-chip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .choice-chip label {
-            margin-bottom: 0;
-        }
-
-        .choice-chip p {
-            font-size: 12px;
-            line-height: 18px;
-            margin-bottom: 0;
-        }
-
-        .choice-chip-head {
-            display: inline-grid;
+        video {
             width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+        #camera {
+            margin: 0 auto;
         }
 
-        .choice-chip-label {
-            border: 1px solid #EEEEEF;
-            border-radius: 4px;
-
-            flex: calc(100% * (1/3) - 10px - 1px);
-            height: 28px;
-            text-align: center;
-
-            padding: 4px 0;
-
-            font-family: NunitoSans-SemiBold;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 20px;
-
-            color: #58585B;
+        #video {
+            background-color: #666;
         }
 
-        .choice-chip input[type="radio"] {
-            display: none;
+        .hasil-foto {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
         }
-
-        .choice-chip input[type="radio"]:not(:disabled)~label {
-            cursor: pointer;
-        }
-
-        .choice-chip input[type="radio"]:checked+label {
-            background: #F1F8EC;
-            color: #004D43;
-            border-color: #407972;
-        }
-
-        /* ==================================================== */
-
-        .choice-slide::-webkit-scrollbar{
-            display: none;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .choice-slide{
-            overflow: auto;
-            white-space: nowrap;
-        }
-        .choice-slide p {
-            margin-bottom: 0;
-        }
-        .choice-slide p.head {
-            font-size: 14px;
-            line-height: 20px;
-            font-family: NunitoSans-SemiBold;
-        }
-        .choice-slide p.body{
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 14px;
-            text-transform: capitalize !important;
-        }
-        .choice-slide .choice-chip-label {
-            border: 1px solid #EEEEEF;
-            border-radius: 4px;
-            padding: 6px;
-            margin-right: 4px;
-
-            height: unset;
-            min-width: 104px;
-            width: fit-content;
-            text-align: left;
-
-            color: #58585B;
-
-            display: inline-block;
-        }
+        /* style lainnya */
     </style>
 </head>
-
 <body>
-    <section>
-        <div class="container-fluid p-2">
+    <div id="camera">
+        <video id="video"></video>
+        <button id="snap">Snap Photo</button>
+        <button id="save">Save</button>
+    </div>
 
-            <div class="choice-chip">
 
-                <div class="choice-chip-head">
-                    <h7>Jumlah Pembelian</h7>
-                    <p>Harga beli emas saat ini Rp 9.200 / 0,01 gr</p>
-                </div>
+    <script>
+        
+        // get video element
+        var video = document.getElementById('video');
 
-                <input type="radio" name="budget" id="budget-1">
-                <label class="choice-chip-label" for="budget-1">
-                    <span>Rp 100 Ribu</span>
-                </label>
+        // get snap button
+        var snap = document.getElementById('snap');
+        // get access to the camera
+        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080, facingMode: 'environment', autoFocus: true, autoExposure: true } }).then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+        });
 
-                <input type="radio" name="budget" id="budget-2">
-                <label class="choice-chip-label" for="budget-2">
-                    <span>Rp 500 Ribu</span>
-                </label>
+        
+        // take a snap
+        snap.addEventListener("click", function() {
+            // remove previous image
+            var previousImg = document.querySelector('img');
+            if (previousImg) {
+                previousImg.parentNode.removeChild(previousImg);
+            }
 
-                <input type="radio" name="budget" id="budget-3">
-                <label class="choice-chip-label" for="budget-3">
-                    <span>Rp 1 Juta</span>
-                </label>
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-                <input type="radio" name="budget" id="budget-4">
-                <label class="choice-chip-label" for="budget-4">
-                    <span>Rp 5 Juta</span>
-                </label>
+            var img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.classList.add("hasil-foto");
+            document.body.appendChild(img);
+        });
 
-                <input type="radio" name="budget" id="budget-5">
-                <label class="choice-chip-label" for="budget-5">
-                    <span>Rp 10 Juta</span>
-                </label>
+        var save = document.getElementById('save');
 
-                <input type="radio" name="budget" id="budget-6">
-                <label class="choice-chip-label" for="budget-6">
-                    <span>Rp 50 Juta</span>
-                </label>
+        // add event listener for save button
+        save.addEventListener("click", function() {
+            // get the image source
+            var imgSrc = document.querySelector('.hasil-foto').src;
+            // create a link
+            var link = document.createElement('a');
+            link.download = "image.png";
+            link.href = imgSrc;
+            // trigger download
+            link.click();
+        });
 
-            </div>
-
-        </div>
-    </section>
-
-    <section>
-        <div class="container-fluid p-2">
-
-            <div class="choice-chip">
-
-                <div class="choice-chip-head">
-                    <h7>Jumlah Pembelian</h7>
-                    <p>Harga beli emas saat ini Rp 9.200 / 0,01 gr</p>
-                </div>
-
-                <div class="choice-slide">
-
-                    <input type="radio" name="budget" id="col-choice-1">
-                    <label class="choice-chip-label" for="col-choice-1">
-                        <span>
-                            <p class="head">1 Gram</p>
-                            <p class="body"> Rp. 1.000.000 </p>
-                        </span>
-                    </label>
-
-                    <input type="radio" name="budget" id="col-choice-2">
-                    <label class="choice-chip-label" for="col-choice-2">
-                        <span>
-                            <p class="head">1 Gram</p>
-                            <p class="body"> Rp. 1.000.000 </p>
-                        </span>
-                    </label>
-
-                    <input type="radio" name="budget" id="col-choice-3">
-                    <label class="choice-chip-label" for="col-choice-3">
-                        <span>
-                            <p class="head">1 Gram</p>
-                            <p class="body"> Rp. 1.000.000 </p>
-                        </span>
-                    </label>
-
-                    <input type="radio" name="budget" id="col-choice-4">
-                    <label class="choice-chip-label" for="col-choice-4">
-                        <span>
-                            <p class="head">1 Gram</p>
-                            <p class="body"> Rp. 1.000.000 </p>
-                        </span>
-                    </label>
-
-                    <input type="radio" name="budget" id="col-choice-5">
-                    <label class="choice-chip-label" for="col-choice-5">
-                        <span>
-                            <p class="head">1 Gram</p>
-                            <p class="body"> Rp. 1.000.000 </p>
-                        </span>
-                    </label>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <script src="./js/global-concat.min.js"></script>
+    </script>
 </body>
-
 </html>
