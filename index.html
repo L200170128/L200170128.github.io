@@ -40,12 +40,20 @@
         // get snap button
         var snap = document.getElementById('snap');
         // get access to the camera
-        navigator.mediaDevices.getUserMedia({ video: { width: 1920, height: 1080, facingMode: 'environment', autoFocus: true, autoExposure: true } }).then(function(stream) {
-            video.srcObject = stream;
-            video.play();
-        });
+        if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+            navigator.mediaDevices.getDisplayMedia({ video: { width: 1920, height: 1080, facingMode: 'environment', autoFocus: true, autoExposure: true } }).then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+            });
+        } else {
+            navigator.getUserMedia({ video: { width: 1920, height: 1080, facingMode: 'environment', autoFocus: true, autoExposure: true } }, function(stream) {
+                video.srcObject = stream;
+                video.play();
+            }, function(error) {
+                console.log("Error: " + error);
+            });
+        }
 
-        
         // take a snap
         snap.addEventListener("click", function() {
             // remove previous image
@@ -82,4 +90,3 @@
 
     </script>
 </body>
-</html>
