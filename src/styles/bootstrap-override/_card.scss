@@ -1,0 +1,18 @@
+// ELEVATIONS 
+$elevation-1 : drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.14)) drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.08));
+$elevation-2 : drop-shadow(0px 6px 14px rgba(0, 0, 0, 0.16)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+
+.card {
+	--g-bs-card-border-width: 0px !important;
+	filter: $elevation-1;
+}
+.card-header {
+    padding: .5rem 1rem;
+}
+.card-body {
+	padding: 1rem;
+	color: var(--g-kit-black-80);
+    h5 {
+		color: $text-green;
+	}
+}

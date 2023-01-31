@@ -1,0 +1,40 @@
+{
+    "homepage": "http://ltslord.github.io/",
+    "name": "web-psds",
+    "author": "PT Pegadaian",
+    "description": "Pegadaian Syariah Digital Service website",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d deploy",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "axios": "^1.2.0",
+        "bootstrap": "^5.2.3",
+        "classnames": "^2.3.2",
+        "lodash.debounce": "^4.0.8",
+        "lodash.throttle": "^4.1.1",
+        "next": "13.0.0",
+        "nprogress": "^0.2.0",
+        "prop-types": "^15.8.1",
+        "react": "18.2.0",
+        "react-animate-height": "^3.0.5",
+        "react-bootstrap": "^2.6.0",
+        "react-bootstrap-icons": "^1.10.2",
+        "react-dom": "18.2.0",
+        "react-hook-form": "^7.39.6",
+        "sass": "^1.56.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.20.2",
+        "babel-loader": "^8.3.0",
+        "eslint": "8.22.0",
+        "eslint-config-next": "13.0.0",
+        "gh-pages": "^5.0.0"
+    }
+}
