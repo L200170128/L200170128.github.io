@@ -145,6 +145,69 @@
         transform: scale(1.25); 
         }
 
+        .popover-container {
+            background-color: #fff;
+            border-radius: 12px;
+            color: rgb(88, 88, 91);
+            padding: 16px;
+            filter: drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px) drop-shadow(rgba(0, 0, 0, 0.14) 0px 2px 6px);
+            border: none;
+
+            min-width: 350px;
+
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+            display: none;
+        }
+
+        .popover-container img {
+            width: -webkit-fill-available;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .oneklick-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .oneklick-container .navbar-brand {
+            display: none;
+        }
+        
+        .my-popover {
+            display: block;
+        }
+        
+        .card {
+            width: 100%;
+            padding: 0;
+            border: 0;
+            text-align: left;
+
+        }
+        
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .card h3 {
+            margin: 10px 0px 10px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #252528;
+        }
+
+        .card p {
+            font-size: .875rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
     </style>
 </head>
 
@@ -155,12 +218,41 @@
             <nav class="navbar navbar-expand-lg navbar-light container">
                 <a class="navbar-brand" href="/">
                     <img src="./assets/logo-pegadaian-small.svg" alt="">
-                    <span>
-                        <a href="0" style="left: 190px; position: absolute;">
-                            <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
+                
+                    <!-- <a id="popoverData" class="btn" href="#"    
+                        data-original-title="Title" 
+                        data-content= "<img src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp' class='img-thumbnail' alt='Hollywood Sign on The Hill'/>"
+                        rel="popover" 
+                        data-placement="bottom" 
+                        data-trigger="hover" 
+                        style="position: absolute; left: 180px;">
+                        <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
+                    </a> -->
+
+                    <!-- <a rel="popover" data-title="Title"  data-img="//placehold.it/200x100" style="position: absolute; left: 190px;" href="#">
+                        <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
+                    </a> -->
+
+                    <!-- <a id="my-popover" href="#" data-toggle="popover" data-placement="top" title="Title" data-content="<div class='card'><img src='//placehold.it/200x100' class='card-img-top'><div class='card-body'><p class='card-text'>Ini adalah konten popover menggunakan card.</p></div></div>">
+                        <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
+                    </a> -->
+
+                    <!-- <a href="#" class="my-popover" data-title="Title" data-img="//placehold.it/200x100">
+                        <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
+                    </a>
+
+                    <div class="popover-container"></div> -->
+
+                    <div class="oneklick-container" style="position: absolute; left: 190px;">
+                        <a href="#" class="my-popover" data-title="Title" data-desc="Description" data-img="//placehold.it/200x100">
+                          <img class="oneklick" src="./assets/one-klick.svg" alt="" height="32px">
                         </a>
-                    </span>
+                        
+                        <div class="popover-container"></div>
+                    </div>
+
                 </a>
+                    
                 
                 <button class="navbar-toggler-pgd collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContentTest" aria-controls="navbarSupportedContentTest"
@@ -476,6 +568,60 @@
     </section>
 
     <script src="./js/global-concat.min.js"></script>
+    <!-- <script>
+        $('#popoverData').popover();
+        $('#popoverOption').popover({ trigger: "hover" });
+
+        $('a[rel=popover]').popover({
+            html: true,
+            trigger: 'hover',
+            placement: 'bottom',
+            content: function(){return '<img src="'+$(this).data('img') + '" />';}
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#my-popover').popover({
+            html: true,
+            sanitize: false
+            })
+        })
+    </script> -->
+
+    <!-- <script>
+        $(function() {
+            $('.my-popover').hover(function() {
+                var title = $(this).data('title');
+                var img = $(this).data('img');
+                
+                var content = '<div class="card"><img src="' + img + '" class="card-img-top"><div class="card-body"><p class="card-text">' + title + '</p></div></div>';
+                
+                $('.popover-container').html(content);
+                $('.popover-container').fadeIn('fast');
+            }, function() {
+                $('.popover-container').fadeOut('fast');
+            });
+        });
+    </script> -->
+
+    <script>
+        $(function() {
+            $('.my-popover').hover(function() {
+                var title = $(this).data('title');
+                var desc = $(this).data('desc');
+                var img = $(this).data('img');
+                
+                var content = '<div class="card"><img src="' + img + '"><h3>' + title + '</h3><p>' + desc + '</p></div>';
+                
+                $('.popover-container').html(content);
+                $('.popover-container').fadeIn('fast');
+            }, function() {
+                $('.popover-container').fadeOut('fast');
+            });
+        });
+    </script>
+  
 </body>
 
 </html>
