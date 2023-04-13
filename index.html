@@ -6,11 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahabat Pegadaian</title>
-
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./css/pegadaian-material.min.css" />
     <link rel="stylesheet" href="./css/main.css" />
 
     <style>
+        h5 {
+            font-family: NunitoSans-ExtraBold;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 30px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: #58585b;
+            font-family: NunitoSans-SemiBold;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            margin-bottom: 0;
+        }
+
         .choice-chip {
             display: flex;
             flex-wrap: wrap;
@@ -226,7 +244,7 @@
         }
 
         .btn-float {
-            z-index: 1099;
+            z-index: 1000;
             position: absolute;
             right: 80px;
             bottom: 40px;
@@ -239,6 +257,19 @@
             height: 60px;
         }
 
+        @media (max-width: 425px){
+            .btn-float {
+                right: 40px;
+            }
+            .navbar, .navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+                align-items: baseline;
+            }
+            .popover-container {
+                top: 136%;
+                left: -170px;
+            }
+        }
+
         @media (min-width: 576px){
             .modal-dialog {
                 margin: 5rem auto;
@@ -249,7 +280,61 @@
         .modal-content {
             border-radius: 12px;
         }
+
+        /* Offcanvas */
+        .modal-backdrop {
+            z-index: 1020;
+        }
+
+        .offcanvas-backdrops {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-out;
+        }
+
+        .offcanvas-backdrops.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .offcanvas {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            width: 100%;
+            max-height: 90%;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #fff;
+            box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+            transform: translate(0, 100%);
+            transition: transform 0.3s ease-out;
+            border-radius: 12px 12px 0px 0px;
+        }
+
+        .offcanvas.show {
+            transform: translate(0, 0);
+        }
+
+
+        .offcanvas-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
         
+        .offcanvas-body {
+            padding: 1rem 0;
+        }
+
     </style>
 </head>
 
@@ -262,7 +347,7 @@
             <a class="navbar-brand mr-auto" href="/">
                 <img src="./assets/images/logo.svg" alt="">
 
-                <div class="oneklick-container" style="position: absolute; left: 190px;">
+                <div class="oneklick-container" style="position: absolute; left: 190px; top: 20px;">
                     <a  href="#" class="my-popover" 
                         data-title="Satu Klik WhatsApp dari Pegadaian" 
                         data-desc="Nikmati kemudahan dan keamanan dalam bertransaksi dengan Satu Klik WhatsApp dari Pegadaian sekarang juga!" 
@@ -421,20 +506,49 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+
+    <!-- Button trigger offcanvas -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas">Buka Offcanvas</button> -->
+
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="myOffcanvas">
+        <div class="offcanvas-header">
+            <!-- <h5 class="offcanvas-title">1Klik WhatsApp dari Pegadaian</h5> -->
+            <button type="button" class="btn-tertiary btn-close ml-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+                <img src="./assets/images/close.svg" alt="">
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <img src="./assets/oneKlickModal.svg" alt="" class="modal-ilustration__img">
+            <h5>1Klik WhatsApp dari Pegadaian</h5>
+            <p>
+                Gunakan fitur ini dan berbagai penawaran menarik dengan upgrade akun kamu melalui aplikasi atau cabang terdekat.
+            </p>
+            <a href="https://wa.me/08888888888" class="btn btn-primary btn-block mt-4">Coba 1Klik WhatsApp Pegadaian</a>
+        </div>
+    </div>
+
     <!-- End Floating Button -->
     
-
     <!-- JS Section -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <script src="./js/global-concat.min.js"></script>
 
     <!-- Custom JS -->
     <script>
         $(document).ready(function(){
-            $('#get-modal-with-ilustration').modal('show');
+            var modalId = '';
+
+            if (window.matchMedia('(max-width: 991px)').matches) {
+                modalId = '#myOffcanvas';
+            } else {
+                modalId = '#get-modal-with-ilustration';
+            }
+            $(modalId).modal('show');
+            
         });
-    </script>        
+    </script>   
+
     <script>
         $(function() {
             $('.my-popover').hover(function() {
@@ -450,6 +564,35 @@
                 $('.popover-container').fadeOut('fast');
             });
         });
+    </script>
+
+    <script>
+        var myOffcanvas = document.getElementById('myOffcanvas')
+        var myOffcanvasBackdrop = document.querySelector('.offcanvas-backdrop')
+        var myOffcanvasButton = document.querySelector('[data-bs-target="#myOffcanvas"]')
+
+        myOffcanvasButton.addEventListener('click', function () {
+            var target = this.getAttribute('data-bs-target')
+            var offcanvas = new bootstrap.Offcanvas(myOffcanvas)
+            offcanvas.show()
+            document.querySelector(target).classList.add('show')
+            myOffcanvasBackdrop.classList.add('show')
+        })
+
+        myOffcanvasBackdrop.addEventListener('click', function () {
+            var offcanvas = new bootstrap.Offcanvas(myOffcanvas)
+            offcanvas.hide()
+            myOffcanvasBackdrop.classList.remove('show')
+        })
+
+        var myOffcanvasCloseButtons = myOffcanvas.querySelectorAll('[data-bs-dismiss="offcanvas"]')
+        Array.from(myOffcanvasCloseButtons).forEach(function (button) {
+            button.addEventListener('click', function () {
+                var offcanvas = new bootstrap.Offcanvas(myOffcanvas)
+                offcanvas.hide()
+                myOffcanvasBackdrop.classList.remove('show')
+            })
+        })
     </script>
 
 </body>
